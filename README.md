@@ -20,7 +20,21 @@ So now - as a small contribution to the Arch community, here is my Arch Linux Ea
 # Usage
 The script is intended to be used immediately after a fresh install of Arch Linux - either via archinstall script or (for the purists) a manually configured installation. I would suggest downloading the script (```easy-setup.sh```) and saving it to a USB drive or similar before starting your Arch Linux installation.
 
-When installing Arch Linux with archinstall, I would suggest selecting just "xorg/xserver" as your profile for installation, rather than installing/configuring a DE (Gnome, KDE, Cinnamon etc) within archinstall. My script provides for automatic installation and configuration of Cinnamon, Gnome or KDE automatically. 
+When installing Arch Linux with archinstall, I would suggest selecting just "xorg/xserver" as your profile for installation, rather than installing/configuring a DE (Gnome, KDE, Cinnamon etc) within archinstall. My script provides for automatic installation and configuration of Cinnamon, Gnome or KDE automatically.
+
+## Suggested method to access and run the script following installing Arch (using the ISO):
+
+1. Download ```easy-setup.sh``` and save it to a location such as an external hard drive or USB.
+
+2. Boot into the newly installed system, and log in to the terminal using the username and password you created during installation of Arch.
+
+3. Enter the command ```lsblk``` to determiine the /dev entry for the device you saved the script to. For example, the device may show as **/dev/sdb1**.
+
+4. Enter the command ```sudo mkdir -p /media/tmp``` to create a mountpoint for the device you saved the script to.
+
+5. Mount the device with ```sudo mount **device** /media/tmp```, then access the device with ```cd /media/tmp```.
+
+6. Enter the command ```sh easy-setup.sh``` to run the script.
 
 The script will first ask if you want to install some handy BASH shortcuts into ```~/.bashrc```, then if you'd like to activate chaotic-aur and Systemback repos (Systemback is a very useful and powerful tool for backing up your system).
 
@@ -30,11 +44,11 @@ The shortcuts the script adds to ```~/.bashrc``` are as follows (feel free to mo
 | --- | --- | --- |
 | install | yay -S | Installs packages |
 | remove | yay -Rcns | Removes packages, along with unused/orphaned dependencies |
-| update | yay -Syu | Performs a system update (the same as ```sudo pacman -syu```, but using yay so AUR pkgs also updated) |
+| update | yay -Syu | Performs a system update (the same as ```sudo pacman -syu```, but we're using yay, so AUR pkgs also updated) |
 | search | yay -Ss | Search for packages |
-| showinst | yay -Qs' | Show a list of installed packages matching the argument |
+| showinst | yay -Qs | Show a list of installed packages matching the argument |
 | edit | featherpad | Invoke the Featherpad text editor to edit text files |
-| wipe | yes|yay -Scc >/dev/null ; rm -rf ~/.cache/yay ; rm /home/$USER/.bash_history ; clear ; history -c' | Clear package case and shell command history |
+| wipe | yes|yay -Scc >/dev/null ; rm -rf ~/.cache/yay ; rm /home/$USER/.bash_history ; clear ; history -c' | Clear terminal, package case and shell command history |
 | updategrub | sudo grub-mkconfig -o /boot/grub/grub.cfg | Perform a Grub menu update |
 | reflector | sudo reflector -c AU --save /etc/pacman.d/mirrorlist | Update the pacman reflector list |
 
