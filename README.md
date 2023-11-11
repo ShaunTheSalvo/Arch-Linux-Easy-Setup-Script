@@ -32,12 +32,11 @@ The shortcuts the script adds to ```~/.bashrc``` are as follows (feel free to mo
 | remove | yay -Rcns | Removes packages, along with unused/orphaned dependencies |
 | update | yay -Syu | Performs a system update (the same as ```sudo pacman -syu```, but using yay so AUR pkgs also updated) |
 | search | yay -Ss | Search for packages |
-
-|showinst|yay -Qs'|Show a list of installed packages matching the argument|
-|edit|featherpad|Invoke the Featherpad text editor to edit text files|
-|wipe|yes|yay -Scc >/dev/null ; rm -rf ~/.cache/yay ; rm /home/$USER/.bash_history ; clear ; history -c'|Clear package case and shell command history|
-updategrub|sudo grub-mkconfig -o /boot/grub/grub.cfg|Perform a Grub menu update|
-|reflector|sudo reflector -c AU --save /etc/pacman.d/mirrorlist|Update the pacman reflector list|
+| showinst | yay -Qs' | Show a list of installed packages matching the argument |
+| edit | featherpad | Invoke the Featherpad text editor to edit text files |
+| wipe | yes|yay -Scc >/dev/null ; rm -rf ~/.cache/yay ; rm /home/$USER/.bash_history ; clear ; history -c' | Clear package case and shell command history |
+| updategrub | sudo grub-mkconfig -o /boot/grub/grub.cfg | Perform a Grub menu update |
+| reflector | sudo reflector -c AU --save /etc/pacman.d/mirrorlist | Update the pacman reflector list |
 
 Next, the script will ask if you'd like to link certain directories from your $HOME directory to directories in /home/common (and will create these as well if you choose). The benefit here is that data stored in this directory can be retained even if you delete your regular /home/user directory - just use the script to re-link the directories if needed. Please review the script first so you can see which directories it links. The linked directories are modified depending on which browser you choose to install or configure.
 
