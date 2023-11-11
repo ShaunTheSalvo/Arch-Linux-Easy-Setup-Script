@@ -26,11 +26,13 @@ The script will first ask if you want to install some handy BASH shortcuts into 
 
 The shortcuts the script adds to ```~/.bashrc``` are as follows (feel free to modify them as you like):
 
+| Shortuct | Command Executed | Function |
+| --- | --- | --- |
+| install | yay -S | Installs packages |
+| remove | yay -Rcns | Removes packages, along with unused/orphaned dependencies |
+| update | yay -Syu | Performs a system update (the same as ```sudo pacman -syu```, but using yay so AUR pkgs also updated) |
+| search | yay -Ss | Search for packages |
 
-|install|yay -S|Installs packages|
-|remove|yay -Rcns|Removes packages, along with unused/orphaned dependencies|
-|update|yay -Syu|Performs a system update (the same as ```sudo pacman -syu```, but using yay so AUR pkgs also updated)|
-|search|yay -Ss|Search for packages|
 |showinst|yay -Qs'|Show a list of installed packages matching the argument|
 |edit|featherpad|Invoke the Featherpad text editor to edit text files|
 |wipe|yes|yay -Scc >/dev/null ; rm -rf ~/.cache/yay ; rm /home/$USER/.bash_history ; clear ; history -c'|Clear package case and shell command history|
