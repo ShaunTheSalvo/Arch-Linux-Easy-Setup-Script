@@ -15,7 +15,7 @@ The script offers a few choices before it starts installing stuff such as which 
 
 A friend of mine and myself both use Arch, but we have different preferences regarding which desktop, web browser, and other software, we use. The script as it stands today was inspired by our different preferences, and I decided to take it on as fun little hobby. The script as it stands today is quite different to the ones we created in the early days about mid-2022!
 
-So now - as a small contribution to the Arch community, here is my Arch Linux Easy Setup script, in the hope someone finds it useful. Feel free to customise/change it to suit your needs. I recommend you review the script before running it, to ensure it meets your needs --- and that it doesn't do anything you don't want it to do! :).</i> :)
+So now - as a small contribution to the Arch community, here is my Arch Linux Easy Setup script, in the hope someone finds it useful. Feel free to customise/change it to suit your needs. I recommend you review the script before running it, to ensure it meets your needs --- and that it doesn't do anything you don't want it to do! :)
 
 # Usage
 The script is intended to be used immediately after a fresh install of Arch Linux - either via archinstall script or (for the purists) a manually configured installation. I would suggest downloading the script (```easy-setup.sh```) and saving it to a USB drive or similar before starting your Arch Linux installation.
