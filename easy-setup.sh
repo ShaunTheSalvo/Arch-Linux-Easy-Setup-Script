@@ -44,13 +44,13 @@ if [[ ! $BROWSER == N* ]]; then
 	fi
 fi
 
-GENERAL1=$(whiptail --title "General Applications & Libraries" --checklist "Which general apps and libraries would you like to install? Please be careful if you change options such as mesa and vulkan, as some games and programs may not run if they are not installed! Select CANCEL if you don't want to install anything here." 34 40 20 \
+GENERAL1=$(whiptail --title "General Applications & Libraries" --checklist "Which general apps and libraries would you like to install? Note: if you change options such as mesa and vulkan, some games and programs may not run if they are not installed! Select CANCEL if you don't want to install anything here. Note: basic packages such as CUPS, and support for NTFS and FAT filesystems are installed by default" 34 40 20 \
 libreoffice-fresh "" ON \
 wps-office "" OFF \
-ttf-ms-fonts "" ON \
-vlc "" ON \
+ttf-ms-fonts "" OFF \
 hplip "" OFF \
-lutris "" ON \
+vlc "" ON \
+lutris "" OFF \
 wine "" ON \
 winetricks "" ON \
 vulkan-icd-loader "" ON \
@@ -216,11 +216,12 @@ fi
 ### Desktop Installation ### 
 ############################
 
-### Install minimal Cinnamon ###
-if [[ $DESKTOP == C* ]]; then
-	echo -e "\n\n$(tput bold)Installing Cinnamon Desktop$(tput sgr0)"
-	yay -S --noconfirm cinnamon lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings featherpad nemo-terminal gnome-terminal
-	sudo systemctl enable lightdm
+
+### Install minimal KDE ###
+if [[ $DESKTOP == K* ]]; then
+	echo -e "\n\n$(tput bold)Installing minimal KDE Desktop$(tput sgr0)"
+	yay -S --noconfirm sddm sddm-kcm breeze-gtk networkmanager nm-connection-editor plasma-nano plasma-wayland-session plasma-nm plasma-pa kdeplasma-addons discover packagekit-qt5 kde-gtk-config systemsettings powerdevil bluez bluedevil konsole dolphin yakuake kscreen kmix kate mc kio-gdrive
+	sudo systemctl enable sddm
 fi
 
 ### Install minimal Gnome ###
@@ -244,11 +245,11 @@ if [[ $DESKTOP == G* ]]; then
 	gnome-extensions enable weatheroclock@CleoMenezesJr.github.io
 fi
 
-### Install minimal KDE ###
-if [[ $DESKTOP == K* ]]; then
-	echo -e "\n\n$(tput bold)Installing minimal KDE Desktop$(tput sgr0)"
-	yay -S --noconfirm sddm sddm-kcm breeze-gtk networkmanager nm-connection-editor plasma-nano plasma-wayland-session plasma-nm plasma-pa kdeplasma-addons discover packagekit-qt5 kde-gtk-config systemsettings powerdevil bluez bluedevil konsole dolphin yakuake kscreen kmix kate mc kio-gdrive
-	sudo systemctl enable sddm
+### Install minimal Cinnamon ###
+if [[ $DESKTOP == C* ]]; then
+	echo -e "\n\n$(tput bold)Installing Cinnamon Desktop$(tput sgr0)"
+	yay -S --noconfirm cinnamon lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings featherpad nemo-terminal gnome-terminal
+	sudo systemctl enable lightdm
 fi
 
 
