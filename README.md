@@ -51,7 +51,7 @@ The shortcuts the script adds to ```~/.bashrc``` are as follows (feel free to mo
 | edit | featherpad | Invoke the Featherpad text editor to edit text files |
 | wipe | yes|yay -Scc >/dev/null ; rm -rf ~/.cache/yay ; rm /home/$USER/.bash_history ; clear ; history -c' | Clear terminal, package case and shell command history |
 | updategrub | sudo grub-mkconfig -o /boot/grub/grub.cfg | Perform a Grub menu update |
-| reflector | sudo reflector -c AU --save /etc/pacman.d/mirrorlist | Update the pacman reflector list |
+| reflector | sudo reflector -c AU --save /etc/pacman.d/mirrorlist | Update the pacman reflector list. I suggest you change "AU" to your country code, eg "US" This will ensure packages are downloaded from an Arch mirror in your country. |
 
 By default, the script depends on ```yay``` being installed to run. This is because ```yay``` allows for automated installation of packages from AUR. Therefore, addition of chaotic-aur and yay are essential for all of the software installation segments of the script. If you do not wish to use chaotic-aur and  ```yay```, you can modify the sccript to replace instaances of calls to ```yay``` to ```sudo pacman```. However, for the sake of making life a little easier for you, I would recommend allowing the script to install chaotic-aur and yay.
 
