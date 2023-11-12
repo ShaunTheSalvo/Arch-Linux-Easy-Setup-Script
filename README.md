@@ -20,7 +20,7 @@ So now - as a small contribution to the Arch community, here is my Arch Linux Ea
 # Usage
 The script is intended to be used immediately after a fresh install of Arch Linux - either via archinstall script or (for the purists) a manually configured installation. I would suggest downloading the script (```easy-setup.sh```) and saving it to a USB drive or similar before starting your Arch Linux installation.
 
-When installing Arch Linux with archinstall, I would suggest selecting just "xorg/xserver" as your profile for installation, rather than installing/configuring a DE (Gnome, KDE, Cinnamon etc) within archinstall. My script provides for automatic installation and configuration of Cinnamon, Gnome or KDE automatically.
+When installing Arch Linux with archinstall, I would suggest selecting just "xorg/xserver" as your profile for installation, rather than installing/configuring a DE (Gnome, KDE, Cinnamon etc) within archinstall. My script provides for installation and configuration of Cinnamon, Gnome or KDE automatically, with a focus on minimalism.
 
 ## Suggested method to access and run the script following installing Arch (using the ISO):
 
