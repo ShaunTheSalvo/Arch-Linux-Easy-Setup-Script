@@ -83,7 +83,7 @@ clear
 
 if [[ $SHORT == 1 ]]; then
 	echo -e "\n\n$(tput bold)Adding bash shortcuts$(tput sgr0)"
-	echo -e "alias ls='ls --color=auto -alh'\nalias install='yay -S'\nalias remove='yay -Rcns'\nalias autoremove='yay -Rcns $(yay -Qdttq)'\nalias update='yay -Syu'\nalias search='yay -Ss'\nalias showinst='yay -Qs'\nalias edit='featherpad'\nalias wipe='yes|yay -Scc >/dev/null ; rm -rf ~/.cache/yay ; rm /home/$USER/.bash_history ; clear ; history -c'\nalias updategrub='sudo grub-mkconfig -o /boot/grub/grub.cfg'\nalias reflector='sudo reflector -c AU --save /etc/pacman.d/mirrorlist'" >> /home/$USER/.bashrc
+	echo -e "alias ls='ls --color=auto -alh'\nalias install='yay -S'\nalias remove='yay -Rcns'\nalias autoremove='yay -Rcns $(yay -Qdttq)'\nalias update='yay -Syu'\nalias search='yay -Ss'\nalias showinst='yay -Qs'\nalias edit='kate'\nalias wipe='yes|yay -Scc >/dev/null ; rm -rf ~/.cache/yay ; rm /home/$USER/.bash_history ; clear ; history -c'\nalias updategrub='sudo grub-mkconfig -o /boot/grub/grub.cfg'\nalias reflector='sudo reflector -c AU --save /etc/pacman.d/mirrorlist'" >> /home/$USER/.bashrc
 fi
 
 ################################
@@ -227,7 +227,7 @@ fi
 if [[ $DESKTOP == G* ]]; then
 	echo -e "\n\n$(tput bold)Installing minimal Gnome Desktop and extensions$(tput sgr0)"
 	yay -S --noconfirm gdm
-	yay -S --noconfirm gnome-shell gnome-terminal gnome-tweak-tool gnome-control-center xdg-user-dirs eog gnome-menus gnome-browser-connector gnome-screenshot gnome-shell-extensions gnome-tweaks nemo nemo-terminal gnome-themes-extra extension-manager gnome-shell-extension-arc-menu gnome-shell-extension-gtk4-desktop-icons-ng gnome-shell-extension-arch-update gnome-shell-extension-bing-wallpaper gnome-shell-extension-dash-to-panel gnome-shell-extension-weather-oclock-git guake alacarte mc featherpad evince seahorse qgnomeplatform-qt5 qgnomeplatform-qt6 qt5-wayland qt6-wayland gnome-keyring gvfs-google seahorse # gdm gnome-shell-extension-smart-auto-move-git ## disabled as extension not compatible with Gnome 45
+	yay -S --noconfirm gnome-shell gnome-terminal gnome-tweak-tool gnome-control-center xdg-user-dirs eog gnome-menus gnome-browser-connector gnome-screenshot gnome-shell-extensions gnome-tweaks nemo nemo-terminal gnome-themes-extra extension-manager gnome-shell-extension-arc-menu gnome-shell-extension-gtk4-desktop-icons-ng gnome-shell-extension-arch-update gnome-shell-extension-bing-wallpaper gnome-shell-extension-dash-to-panel gnome-shell-extension-weather-oclock-git guake alacarte mc kate evince seahorse qgnomeplatform-qt5 qgnomeplatform-qt6 qt5-wayland qt6-wayland gnome-keyring gvfs-google seahorse # gdm gnome-shell-extension-smart-auto-move-git ## disabled as extension not compatible with Gnome 45
 
 	sudo systemctl enable gdm
 
@@ -247,7 +247,7 @@ fi
 ### Install minimal KDE ###
 if [[ $DESKTOP == K* ]]; then
 	echo -e "\n\n$(tput bold)Installing minimal KDE Desktop$(tput sgr0)"
-	yay -S --noconfirm sddm sddm-kcm breeze-gtk networkmanager nm-connection-editor plasma-nano plasma-wayland-session plasma-nm plasma-pa kdeplasma-addons kde-gtk-config systemsettings powerdevil bluez bluedevil konsole dolphin yakuake kscreen kmix plasma5-applets-kde-arch-update-notifier featherpad mc kio-gdrive
+	yay -S --noconfirm sddm sddm-kcm breeze-gtk networkmanager nm-connection-editor plasma-nano plasma-wayland-session plasma-nm plasma-pa kdeplasma-addons discover packagekit-qt5 kde-gtk-config systemsettings powerdevil bluez bluedevil konsole dolphin yakuake kscreen kmix kate mc kio-gdrive
 	sudo systemctl enable sddm
 fi
 
