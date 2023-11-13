@@ -1,7 +1,7 @@
 #!/bin/bash
-echo -e "$(tput bold)Arch Easy Setup Script: V1.0 - 20231111$(tput sgr0)" ; sleep 2
+echo -e "$(tput bold)Arch Easy Setup Script: V1.1 - 20231113$(tput sgr0)" ; sleep 2
 
-whiptail --title "Arch Easy Setup Script v1.0 - 20231111" --msgbox "Hello, and thank you for using my Arch Linux Easy Setup Script. This script allows installing from a choice of minimal desktops, as well as some useful tools, apps and utilities. In the next few screens, you can select what you'd like to install. After that, the rest of the script is fully automatic, so just sit back and relax while I take care of the magic. :)" 16 50
+whiptail --title "Arch Easy Setup Script: V1.1 - 20231113" --msgbox "Hello, and thank you for using my Arch Linux Easy Setup Script. This script allows installing from a choice of minimal desktops, as well as some useful tools, apps and utilities. In the next few screens, you can select what you'd like to install. After that, the rest of the script is fully automatic, so just sit back and relax while I take care of the magic. :)" 16 50
 
 ############################
 ### Set user preferences ###
@@ -29,6 +29,7 @@ DESKTOP=$(whiptail --title "Desktop Installation Selection" --menu "Which deskto
 "KDE" "" \
 "Gnome" "" \
 "Cinnamon" "" \
+"Budgie" "" \
 "None at this time" "" 3>&1 1>&2 2>&3)
 
 BROWSER=$(whiptail --title "Web Browser Selection" --menu "Which web browser would you like to install?" 16 30 6 \
@@ -252,6 +253,12 @@ if [[ $DESKTOP == C* ]]; then
 	sudo systemctl enable lightdm
 fi
 
+### Install minimal Budgie ###
+if [[ $DESKTOP == B* ]]; then
+	echo -e "\n\n$(tput bold)Installing Budgie Desktop$(tput sgr0)"
+	yay -S --noconfirm budgie-desktop lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings gedit
+	sudo systemctl enable lightdm
+fi
 
 ################################
 ### Install general software ###
