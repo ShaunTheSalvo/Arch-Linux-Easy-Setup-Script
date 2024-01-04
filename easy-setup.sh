@@ -1,7 +1,7 @@
 #!/bin/bash
-echo -e "$(tput bold)Arch Easy Setup Script: V1.1 - 20231113$(tput sgr0)" ; sleep 2
+echo -e "$(tput bold)Arch Easy Setup Script: V1.3 - 20231223$(tput sgr0)" ; sleep 2
 
-whiptail --title "Arch Easy Setup Script: V1.1 - 20231113" --msgbox "Hello, and thank you for using my Arch Linux Easy Setup Script. This script allows installing from a choice of minimal desktops, as well as some useful tools, apps and utilities. In the next few screens, you can select what you'd like to install. After that, the rest of the script is fully automatic, so just sit back and relax while I take care of the magic. :)" 16 50
+whiptail --title "Arch Easy Setup Script: V1.3 20231223" --msgbox "Hello, and thank you for using my Arch Linux Easy Setup Script. This script allows installing from a choice of minimal desktops, as well as some useful tools, apps and utilities. In the next few screens, you can select what you'd like to install. After that, the rest of the script is fully automatic, so just sit back and relax while I take care of the magic. :)" 16 50
 
 ############################
 ### Set user preferences ###
@@ -25,7 +25,7 @@ if [[ $REPOS == 1 ]]; then
 	fi
 fi
 
-DESKTOP=$(whiptail --title "Desktop Installation Selection" --menu "Which desktop would you like to install?" 15 30 5 \
+DESKTOP=$(whiptail --title "Desktop Installation Selection" --menu "Which desktop would you like to install?" 15 31 5 \
 "KDE" "" \
 "Gnome" "" \
 "Cinnamon" "" \
@@ -73,6 +73,11 @@ GENERAL=$(echo $GENERAL1 | tr -d "\"")
 ### Confirm all okay before proceeding ###
 ##########################################
 
+if whiptail --title "Arch Easy Setup Script" --yesno "Would you like the script to run entirely automatically, or confirm each installation step?" 8 55 ; then
+	$CONFIRM="--noconfirm"
+	else
+	$CONFIRM="--canfirm"
+fi
 if ! whiptail --title "Arch Easy Setup Script" --yesno "Okay, that's all the information I need. Would you like to continue?" 8 50 ; then
 	whiptail --title "Arch Easy Setup Script" --msgbox "That's not a problem. You can run the script again if you wish. Have a nice day!" 8 50;  exit 0
 fi
@@ -193,14 +198,14 @@ if [[ $REPOS == 1 ]]; then
 	
 	sudo pacman-key --recv-key 3056513887B78AEB
 	sudo pacman-key --lsign-key 3056513887B78AEB
-	sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
-	sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+	sudo pacman -U $CONFIRM 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+	sudo pacman -U $CONFIRM 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 	echo -e '\n[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist' >> ./pacman.conf
 	
 	sudo cp -r ./pacman.conf /etc; rm ./pacman.conf
 	
 	# Install yay
-	sudo pacman -Sy --noconfirm yay
+	sudo pacman -Sy $CONFIRM yay
 fi
 
 ##########################
@@ -209,7 +214,7 @@ fi
 
 if [[ $SYSBACK == 1 ]]; then
 	echo -e "\n\n$(tput bold)Installing Systemback$(tput sgr0)"
-	yay -S --noconfirm systemback
+	yay -S $CONFIRM systemback
 fi
 
 
@@ -221,15 +226,19 @@ fi
 ### Install minimal KDE ###
 if [[ $DESKTOP == K* ]]; then
 	echo -e "\n\n$(tput bold)Installing minimal KDE Desktop$(tput sgr0)"
-	yay -S --noconfirm sddm sddm-kcm breeze-gtk networkmanager nm-connection-editor plasma-nano plasma-wayland-session plasma-nm plasma-pa kdeplasma-addons discover packagekit-qt5 kde-gtk-config systemsettings powerdevil bluez bluedevil konsole dolphin yakuake kscreen kmix kate mc kio-gdrive
+	yay -S $CONFIRM sddm sddm-kcm breeze-gtk networkmanager nm-connection-editor plasma-nano plasma-wayland-session plasma-nm plasma-pa kdeplasma-addons discover packagekit-qt5 kde-gtk-config systemsettings powerdevil bluez bluedevil konsole dolphin yakuake kscreen kmix kate mc kio-gdrive plasma5-applets-kde-arch-update-notifier wget
 	sudo systemctl enable sddm
 fi
 
 ### Install minimal Gnome ###
 if [[ $DESKTOP == G* ]]; then
 	echo -e "\n\n$(tput bold)Installing minimal Gnome Desktop and extensions$(tput sgr0)"
-	yay -S --noconfirm gdm
-	yay -S --noconfirm gnome-shell gnome-terminal gnome-tweak-tool gnome-control-center xdg-user-dirs eog gnome-menus gnome-browser-connector gnome-screenshot gnome-shell-extensions gnome-tweaks nemo nemo-terminal gnome-themes-extra extension-manager gnome-shell-extension-arc-menu gnome-shell-extension-gtk4-desktop-icons-ng gnome-shell-extension-arch-update gnome-shell-extension-bing-wallpaper gnome-shell-extension-dash-to-panel gnome-shell-extension-weather-oclock-git guake alacarte mc kate evince seahorse qgnomeplatform-qt5 qgnomeplatform-qt6 qt5-wayland qt6-wayland gnome-keyring gvfs-google seahorse # gdm gnome-shell-extension-smart-auto-move-git ## disabled as extension not compatible with Gnome 45
+	yay -S $CONFIRM gdm wget
+	yay -S $CONFIRM gnome-shell gnome-terminal gnome-tweak-tool gnome-control-center xdg-user-dirs xdg-desktop-portal-gnome eog gnome-menus gnome-browser-connector gnome-screenshot gnome-shell-extensions gnome-tweaks nemo nemo-terminal gnome-themes-extra extension-manager gnome-shell-extension-arc-menu gnome-shell-extension-gtk4-desktop-icons-ng gnome-shell-extension-arch-update gnome-shell-extension-bing-wallpaper gnome-shell-extension-dash-to-panel gnome-shell-extension-weather-oclock-git guake alacarte mc kate evince seahorse qgnomeplatform-qt5 qgnomeplatform-qt6 qt5-wayland qt6-wayland gnome-keyring gvfs-google seahorse # gdm gnome-shell-extension-smart-auto-move-git ## disabled as extension not compatible with Gnome 45
+
+	# Install beta/test version of Smart Auto Move - props to ionutbortis, nice work mate! :)
+	wget https://github.com/khimaros/smart-auto-move/files/13418637/smart-auto-move%40khimaros.com.shell-extension.zip
+	gnome-extensions install --force smart-auto-move@khimaros.com.shell-extension.zip
 
 	sudo systemctl enable gdm
 
@@ -242,21 +251,21 @@ if [[ $DESKTOP == G* ]]; then
 	gnome-extensions enable arcmenu@arcmenu.com
 	gnome-extensions enable dash-to-panel@jderose9.github.com
 	gnome-extensions enable ding@rastersoft.com
-#	gnome-extensions enable smart-auto-move@khimaros.com ## temporarily disabled as extension not compatible with Gnome 45
+	gnome-extensions enable smart-auto-move@khimaros.com
 	gnome-extensions enable weatheroclock@CleoMenezesJr.github.io
 fi
 
 ### Install minimal Cinnamon ###
 if [[ $DESKTOP == C* ]]; then
 	echo -e "\n\n$(tput bold)Installing Cinnamon Desktop$(tput sgr0)"
-	yay -S --noconfirm cinnamon lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings featherpad nemo-terminal gnome-terminal
+	yay -S $CONFIRM cinnamon lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings featherpad nemo-terminal gnome-terminal wget
 	sudo systemctl enable lightdm
 fi
 
 ### Install minimal Budgie ###
 if [[ $DESKTOP == B* ]]; then
 	echo -e "\n\n$(tput bold)Installing Budgie Desktop$(tput sgr0)"
-	yay -S --noconfirm budgie-desktop lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings gedit
+	yay -S $CONFIRM budgie-desktop lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings gedit wget
 	sudo systemctl enable lightdm
 fi
 
@@ -266,8 +275,7 @@ fi
 
 	echo -e "\n\n$(tput bold)Installing general software and libraries$(tput sgr0)"
 	echo $GENERAL
-	yay -S --noconfirm system-config-printer cups libdvdread libdvdcss libcdio exfat-utils ntfs-3g sof-firmare $GENERAL
-#	yay -S --noconfirm $GENERAL
+	yay -S $CONFIRM system-config-printer cups libdvdread libdvdcss libcdio exfat-utils ntfs-3g sof-firmare $GENERAL
 	sudo systemctl enable cups.service; sudo systemctl start cups.service
 
 
@@ -278,23 +286,23 @@ fi
 if [[ $BROWSERINST == 1 ]]; then
 	if [[ $BROWSER == B* ]]; then
 		echo -e "\n\n$(tput bold)Installing Brave as default web browser$(tput sgr0)"
-		yay -S --noconfirm brave-bin
+		yay -S $CONFIRM brave-bin
 	fi
 	if [[ $BROWSER == C* ]]; then
 		echo -e "\n\n$(tput bold)Installing Google Chrome as default web browser$(tput sgr0)"
-		yay -S --noconfirm google-chrome
+		yay -S $CONFIRM google-chrome
 	fi
 	if [[ $BROWSER == E* ]]; then
 		echo -e "\n\n$(tput bold)Installing Microsoft Edge as default web browser$(tput sgr0)"
-		yay -S --noconfirm microsoft-edge-stable-bin
+		yay -S $CONFIRM microsoft-edge-stable-bin
 	fi
 	if [[ $BROWSER == F* ]]; then
 		echo -e "\n\n$(tput bold)Installing Firefox as default web browser$(tput sgr0)"
-		yay -S --noconfirm firefox
+		yay -S $CONFIRM firefox
 	fi
 		if [[ $BROWSER == V* ]]; then
 		echo -e "\n\n$(tput bold)Installing Vivaldi as default web browser$(tput sgr0)"
-		yay -S --noconfirm vivaldi
+		yay -S $CONFIRM vivaldi
 	fi
 fi
 
