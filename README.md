@@ -28,7 +28,7 @@ When installing Arch Linux with archinstall, I would suggest selecting just "xor
 
 ## Suggested method to access and run the script following installing Arch (using the ISO):
 
-1. Download ```easy-setup.sh``` and save it to a location such as an external hard drive or USB. (It's a good idea to have it on hand before you start your Arch installation)
+1. Download ```easy-setup.sh``` and save it to a location such as an external hard drive or USB.
 
 2. Boot into the newly installed system, and log in to the terminal using the username and password you created during installation of Arch.
 
@@ -63,7 +63,7 @@ Next, the script will ask if you'd like to link certain directories from your $H
 
 The script will next ask which desktop (if any) you would like to install. Current choices are KDE, Gnome and Cinnamon. I intend to add more desktops in the future. At present I am personally using KDE.
 
-The next few screens will ask you if you wish to install extra software packages, such as web browser, office suite, and several others. Here is where you can 
+The next few screens will ask you if you wish to install extra software packages, such as web browser, office suite, and several others. You can mark/unmark packages for installation as you like. Note some packages such as Lutris or Wine will have dependencies (eg mesa) that may still be installed, even if you deselect the dependencies here.
 
 <b>(Gnome only) Note:</b> at this point, adding desktop icons for network locations (eg Google Drive) works for the root folder of the network drive. However (on Google Drive at least; I haven't tested other network locations), attempting to link other folders or files from your Google Drive directly onto the desktop does not work. The link and icon will be created on the desktop, but clicking the icon to access the file will not work. If anyone has any idea how to fix this, please let me know!
 
