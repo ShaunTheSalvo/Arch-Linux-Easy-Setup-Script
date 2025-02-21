@@ -13,7 +13,7 @@ The desktop environment you select will be installed as minimally as possible - 
 
 # Introduction
 
-I have created a BASH script intended to be used immediately after a basic Arch installation, that automatically installs general applications (eg system tools like yay, web browser, office suite, some of my favourite Gnome extensions etc) and sets up links to my /home/common directory. It also sets up access to chaotic-aur and Systemback repositories.
+I have created a BASH script intended to be used immediately after a basic Arch installation, that automatically installs general applications (eg system tools like yay, web browser, office suite, some of my favourite Gnome extensions etc) and sets up links to my /home/common directory. It also sets up access to chaotic-aur, andontie-aur and Systemback repositories.
 
 The script offers a few choices before it starts installing stuff such as which browser you want to install, whether you want links to directories in /home/common created, and then you just sit back and relax while it does its magic. Then reboot ... and everything is all set up and configured, ready to rock and roll!
 
@@ -24,11 +24,11 @@ So now - as a small contribution to the Arch community, here is my Arch Linux Ea
 # Usage
 The script is intended to be used immediately after a fresh install of Arch Linux - either via archinstall script or (for the purists) a manually configured installation. I would suggest downloading the script (```easy-setup.sh```) and saving it to a USB drive or similar before starting your Arch Linux installation.
 
-When installing Arch Linux with archinstall, I would suggest selecting just "xorg/xserver" as your profile for installation, rather than installing/configuring a DE (Gnome, KDE, Cinnamon etc) within archinstall. My script provides for installation and configuration of Cinnamon, Gnome or KDE automatically, with a focus on minimalism.
+When installing Arch Linux with archinstall, I would suggest selecting just "xorg/xserver" as your profile for installation, rather than installing/configuring a DE (Gnome, KDE, Cinnamon etc) within archinstall. My script provides for installation and configuration of your choice of desktops, with a focus on minimalism.
 
 ## Suggested method to access and run the script following installing Arch (using the ISO):
 
-1. Download ```easy-setup.sh``` and save it to a location such as an external hard drive or USB.
+1. Download ```easy-setup.sh``` and save it to a location such as an external hard drive or USB. (It's a good idea to have it on hand before you start your Arch installation)
 
 2. Boot into the newly installed system, and log in to the terminal using the username and password you created during installation of Arch.
 
