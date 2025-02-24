@@ -1,5 +1,5 @@
 #!/bin/bash
-SCRIPTVER="Arch Easy Setup Script: V1.7 - 20250213"
+SCRIPTVER="Arch Easy Setup Script: V1.8 - 20250224"
 echo -e "$(tput bold)$SCRIPTVER$(tput sgr0)" ; sleep 2
 
 whiptail --title "$SCRIPTVER" --msgbox "Hello, and thank you for using my Arch Linux Easy Setup Script. This script allows installing from a choice of minimal desktops, as well as some useful tools, apps and utilities. In the next few screens, you can select what you'd like to install. After that, the rest of the script is fully automatic, so just sit back and relax while I take care of the magic. :)" 16 50
@@ -199,7 +199,7 @@ if [[ $REPOS == 1 ]]; then
 	# Add Systemback entries to pacman.conf
 	
 	if [[ $SYSBACK == 1 ]] ; then
-		echo -e "\n\n$(tput bold)Adding Systemback to pacman.conf$(tpug sgr0)"
+		echo -e "\n\n$(tput bold)Adding Systemback to pacman.conf$(tput sgr0)"
 		echo -e '\n[yuunix_aur]\nSigLevel = Optional TrustedOnly\nServer = https://shadichy.github.io/$repo/$arch' >> ./pacman.conf
 	fi
 	
@@ -221,7 +221,7 @@ if [[ $REPOS == 1 ]]; then
 	sudo cp -r ./pacman.conf /etc; rm ./pacman.conf
 	
 	# Install yay
-	sudo pacman -Sy $CONFIRM yay
+	sudo pacman -Sy $CONFIRM chaotic-aur/yay
 fi
 
 ############################
@@ -232,7 +232,7 @@ fi
 ### Install minimal KDE ###
 if [[ $DESKTOP == K* ]]; then
 	echo -e "\n\n$(tput bold)Installing minimal KDE Desktop$(tput sgr0)"
-	yay -S $CONFIRM sddm sddm-kcm breeze-gtk kde-gtk-config networkmanager nm-connection-editor plasma-desktop plasma-wayland-session plasma-nm plasma-pa kdeplasma-addons systemsettings powerdevil bluez bluedevil konsole dolphin yakuake kscreen kmix packagekit featherpad mc rclone wget
+	yay -S $CONFIRM sddm sddm-kcm breeze-gtk kde-gtk-config networkmanager nm-connection-editor plasma-desktop plasma-wayland-session plasma-nm plasma-pa kdeplasma-addons systemsettings powerdevil bluez bluedevil konsole dolphin yakuake kscreen packagekit featherpad mc rclone wget
 	sudo systemctl enable sddm
 fi
 
@@ -287,7 +287,7 @@ fi
 
 	echo -e "\n\n$(tput bold)Installing general software and libraries$(tput sgr0)"
 	echo $GENERAL
-	yay -S $CONFIRM nano system-config-printer cups libdvdread libdvdcss libcdio exfat-utils ntfs-3g sof-firmare $GENERAL
+	yay -S $CONFIRM nano system-config-printer cups libdvdread libdvdcss libcdio exfat-utils ntfs-3g sof-firmware $GENERAL
 	sudo systemctl enable cups.service; sudo systemctl start cups.service
 
 
