@@ -17,7 +17,7 @@ The installed system is very minimal; it only includes basic KDE essentials such
 6. On the next page, you can create/delete and assign partitions. Click on the partition you want to modify, make the changes you want, then click the green "<" button to commit the changes. Make sure you have at least a root (/) partition - 20GB is a good size. I also recommend a separate /home partition, and if you have less than 8GB RAM, you may want to consider a swap partition as well. **Please note this screen also lets you delete existing partitions ... you have been warned! :)**
 7. Once you're ready, click **Next**. You'll see a confirmation that you'd like to proceed, then the installation will begin. Just wait for the progress bar to fill, then if all goes well you'll see a notification that the install has been coompleted, after which you can reboot into your fresh new Arch Linux installation!
 
-### You can download the latest version of the ISO [here (Google Drive)](https://drive.google.com/drive/folders/1pxjs_qWDrLdyQw-19yumowIRSmU6grrX?). As always, if you use this ISO, you do so at your own risk - I am not responsible for the results!
+### You can download the latest version of the ISO [here (Google Drive)](https://drive.google.com/drive/folders/1pxjs_qWDrLdyQw-19yumowIRSmU6grrX?). As always, if you use this ISO, you do so at your own risk - I am not responsible for the results! My goal is update the ISO roughly monthly, as and when time permits.
 
 # IMPORTANT - Please read before trying the script
 
