@@ -1,5 +1,5 @@
 #!/bin/bash
-SCRIPTVER="Arch Easy Setup Script: V1.8 - 20250224"
+SCRIPTVER="Arch Easy Setup Script: V1.9 - 20250810"
 echo -e "$(tput bold)$SCRIPTVER$(tput sgr0)" ; sleep 2
 
 whiptail --title "$SCRIPTVER" --msgbox "Hello, and thank you for using my Arch Linux Easy Setup Script. This script allows installing from a choice of minimal desktops, as well as some useful tools, apps and utilities. In the next few screens, you can select what you'd like to install. After that, the rest of the script is fully automatic, so just sit back and relax while I take care of the magic. :)" 16 50
@@ -26,7 +26,7 @@ if [[ $REPOS == 1 ]]; then
 	fi
 fi
 
-DESKTOP=$(whiptail --title "Desktop Installation Selection" --menu "Which desktop would you like to install?" 15 31 5 \
+DESKTOP=$(whiptail --title "Desktop Installation Selection" --menu "Which desktop would you like to install?" 15 31 6 \
 "KDE" "" \
 "Gnome" "" \
 "Cinnamon" "" \
@@ -34,20 +34,23 @@ DESKTOP=$(whiptail --title "Desktop Installation Selection" --menu "Which deskto
 "Cosmic (EXPERIMENTAL!)" "" \
 "None at this time" "" 3>&1 1>&2 2>&3)
 
-BROWSER=$(whiptail --title "Web Browser Selection" --menu "Which web browser would you like to install?" 16 30 6 \
+BROWSER=$(whiptail --title "Web Browser Selection" --menu "Which web browser would you like to install?" 16 30 7 \
 "Brave" "" \
 "Chrome" "" \
 "Edge" "" \
 "Firefox" "" \
 "Vivaldi" "" \
 "None at this time" "" 3>&1 1>&2 2>&3)
+if [[ $BROWSER == "" ]]; then
+	BROWSER="N"
+fi
 if [[ ! $BROWSER == N* ]]; then
 	if whiptail --title "Web Browser Installation" --yesno "Woudld you like to actually install $BROWSER, or just configure its common home directories?" 10 50 ; then
 		BROWSERINST=1
 	fi
 fi
 
-GENERAL1=$(whiptail --title "General Applications & Libraries" --checklist "Which general apps and libraries would you like to install? Note: if you change options such as mesa and vulkan, some games and programs may not run if they are not installed! Select CANCEL if you don't want to install anything here. Note: basic packages such as CUPS, and support for NTFS and FAT filesystems are installed by default" 34 41 20 \
+GENERAL1=$(whiptail --title "General Applications & Libraries" --checklist "Which general apps and libraries would you like to install? Note: if you change options such as mesa and vulkan, some games and programs may not run if they are not installed! Select CANCEL if you don't want to install anything here. Note: basic packages such as CUPS, and support for NTFS and FAT filesystems are installed by default." 40 42 22 \
 libreoffice-fresh "" ON \
 wps-office "" OFF \
 ttf-ms-fonts "" OFF \
@@ -69,6 +72,7 @@ mesa "" ON \
 lib32-mesa "" ON \
 downgrade "" ON \
 octopi "" ON \
+ventoy "" ON \
 3>&1 1>&2 2>&3)
 GENERAL=$(echo $GENERAL1 | tr -d "\"")
 
